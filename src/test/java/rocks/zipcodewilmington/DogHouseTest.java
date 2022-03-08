@@ -12,11 +12,41 @@ import java.util.Date;
  * @author leon on 4/19/18.
  */
 public class DogHouseTest {
-    // TODO - Create tests for `void remove(Integer id)`
-    // TODO - Create tests for `void remove(Dog dog)`
-    // TODO - Create tests for `Dog getDogById(Integer id)`
-    // TODO - Create tests for `Integer getNumberOfDogs()`
 
+    @Test
+    public void testGetNumberOfDogs2(){
+        //Given
+        String name = "Romi";
+        Date birthDate = new Date();
+        Dog romi = AnimalFactory.createDog(name, birthDate);
+        DogHouse.add(romi);
+
+
+        //When
+        int expectedDogCount = DogHouse.getNumberOfDogs();
+        int actualDogCount = 1;
+
+        //Then
+        Assert.assertEquals(actualDogCount, expectedDogCount);
+    }
+
+    @Test
+    public void testGetById(){
+        //Given
+        String name = "Romi";
+        Date birthDate = new Date();
+        Dog romi = AnimalFactory.createDog(name, birthDate);
+        DogHouse.add(romi);
+
+
+        //When
+        Dog expectedDog = romi;
+        int id = romi.getId();
+        Dog actualDog = DogHouse.getDogById(id);
+
+        //Then
+        Assert.assertEquals(expectedDog, actualDog);
+    }
     @Test
     public void testAddDog(){
         //Given
@@ -44,6 +74,23 @@ public class DogHouseTest {
         DogHouse.add(tempRes);
         int expectedSize = 0;
         DogHouse.remove(tempRes.getId());
+        int actualSize = DogHouse.getNumberOfDogs();
+        //Then
+        Assert.assertEquals(expectedSize, actualSize);
+    }
+
+    @Test
+    public void testRemoveDog(){
+        //Given
+        DogHouse.clear();
+
+        //When
+        String name = "Romi";
+        Date birthDate = new Date();
+        Dog romi = AnimalFactory.createDog(name, birthDate);
+        DogHouse.add(romi);
+        int expectedSize = 0;
+        DogHouse.remove(romi);
         int actualSize = DogHouse.getNumberOfDogs();
         //Then
         Assert.assertEquals(expectedSize, actualSize);
