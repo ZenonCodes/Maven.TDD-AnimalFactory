@@ -72,7 +72,7 @@ public class CatTest {
 
         // When (a cat is constructed)
         Cat cat = new Cat(givenName, givenBirthDate, givenId);
-        Food food = new Food("CatChow");
+        Food food = new Food();
 
         // When (we feed the cat)
          cat.eat(food);
@@ -109,21 +109,18 @@ public class CatTest {
     @Test
     public void testSetName() {
         // Given (cat data)
-        String givenName = "Zula";
-        Date givenBirthDate = new Date();
-        Integer givenId = 0;
+        String givenName = "Nacho";
 
         // When (a cat is constructed)
-        Cat cat = new Cat(givenName, givenBirthDate, givenId);
-        String newName = "Nacho";
-        cat.setName(newName);
+        Cat cat = new Cat(null, null, null);
+        cat.setName(givenName);
 
         // When (we retrieve data from the cat)
         String retrievedName = cat.getName();
 
 
         // Then (we expect the new data, to match the retrieved data)
-        Assert.assertEquals(newName, retrievedName);
+        Assert.assertEquals(givenName, retrievedName);
 
     }
     @Test
